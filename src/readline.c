@@ -22,7 +22,7 @@ int verify_actions_key(int chr, readline_t **cursor)
 
 int verify_key(int chr, readline_t **cursor)
 {
-	if (chr == KEY_ENTER || chr == KEY_END)
+	if (chr == KEY_ENTER || chr == KEY_END || chr == -1)
 		return (0);
 	if (verify_actions_key(chr, cursor))
 		return (1);
@@ -56,7 +56,8 @@ char *readline(char *prompt)
 		if (value == 2)
 			print_after_cursor(cursor, prompt);
 	}
-	if (chr == KEY_END)
+	write(1, "\n", 1);
+	if (chr == KEY_END || chr == -1)
 		return (NULL);
 	return (readline_to_char(cursor));
 }

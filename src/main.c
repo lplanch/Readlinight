@@ -12,6 +12,6 @@ int main(void)
 	char *test = NULL;
 
 	while ((test = readline("$> ")) != NULL)
-		printf("\nline : [%s]\n", test);
+		printf("line : [%s]\n", test);
 	return (0);
 }
