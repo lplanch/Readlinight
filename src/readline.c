@@ -56,8 +56,8 @@ char *readline(char *prompt)
 		if (value == 2)
 			print_after_cursor(cursor, prompt);
 	}
-	write(1, "\n", 1);
 	if (chr == KEY_END || chr == -1)
 		return (NULL);
+	write(1, "\n", 1);
 	return (readline_to_char(cursor));
 }
