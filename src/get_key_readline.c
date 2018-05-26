@@ -7,7 +7,8 @@
 
 #include "readline.h"
 
-static struct termios term, oterm;
+static struct termios term;
+static struct termios oterm;
 
 int getch(void)
 {
