@@ -7,12 +7,11 @@
 
 #include "readline.h"
 
-static struct termios term;
-static struct termios oterm;
-
 int getch(void)
 {
 	int c = 0;
+	struct termios term;
+	struct termios oterm;
 
 	tcgetattr(0, &oterm);
 	memcpy(&term, &oterm, sizeof(term));
@@ -28,6 +27,8 @@ int getch(void)
 int kbhit(void)
 {
 	int c = 0;
+	struct termios term;
+	struct termios oterm;
 
 	tcgetattr(0, &oterm);
 	memcpy(&term, &oterm, sizeof(term));
