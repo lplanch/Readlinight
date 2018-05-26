@@ -17,8 +17,8 @@
 #ifndef READLINE_H
 #	define READLINE_H
 
-#define C_FORWARD write(0, "\033[1C", 5)
-#define C_BACKWARD write(0, "\033[1D", 5)
+#define C_FORWARD write(0, "\033[1C", 4)
+#define C_BACKWARD write(0, "\033[1D", 4)
 
 #define KEY_NULL	'\0'
 #define KEY_END		4
