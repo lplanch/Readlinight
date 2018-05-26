@@ -38,7 +38,7 @@ int verify_key(int chr, readline_t **cursor)
 			C_FORWARD;
 		}
 	}
-	return (2);
+	return (1);
 }
 
 char *readline(char *prompt)
@@ -51,10 +51,9 @@ char *readline(char *prompt)
 	while (1) {
 		chr = get_key();
 		value = verify_key(chr, &cursor);
-		if (value == 0)
+		if (!value)
 			break;
-		if (value == 2)
-			print_after_cursor(cursor, prompt);
+		print_after_cursor(cursor, prompt);
 	}
 	if (chr == KEY_END || chr == -1)
 		return (NULL);
