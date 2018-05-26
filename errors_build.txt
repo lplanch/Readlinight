@@ -1,7 +1,0 @@
-src/readline.c: In function ‘readline’:
-src/readline.c:25:14: warning: unused variable ‘cursor’ [-Wunused-variable]
-  readline_t *cursor = NULL;
-              ^~~~~~
-src/readline.c:23:22: warning: unused parameter ‘prompt’ [-Wunused-parameter]
- char *readline(char *prompt)
-                      ^~~~~~
