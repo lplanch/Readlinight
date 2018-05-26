@@ -7,14 +7,23 @@
 
 #include "readline.h"
 
+int verify_actions_key(int chr, readline_t **cursor)
+{
+	if (!is_printable_char(chr))
+		return (1);
+	if (chr == KEY_BACK && can_c_backward(*cursor)) {
+		//BACKSPACE
+		return (1);
+	}
+	return (0);
+}
+
 int verify_key(int chr, readline_t **cursor)
 {
 	if (chr == KEY_ENTER || chr == KEY_END)
 		return (0);
-	if (chr == KEY_BACK && can_c_backward(*cursor)) {
-		write(0, "\b", 1);
-		return (2);
-	}
+	if (verify_actions_key(chr, cursor))
+		return (1);
 	if (chr == KEY_LEFT && can_c_backward(*cursor)) {
 		(*cursor) = (*cursor)->prev;
 		C_BACKWARD;
@@ -25,10 +34,9 @@ int verify_key(int chr, readline_t **cursor)
 		if (chr != KEY_RIGHT && chr != KEY_LEFT) {
 			add_chr_cursor(cursor, chr);
 			C_FORWARD;
-			return (2);
 		}
 	}
-	return (1);
+	return (2);
 }
 
 char *readline(char *prompt)
@@ -43,7 +51,8 @@ char *readline(char *prompt)
 		value = verify_key(chr, &cursor);
 		if (value == 0)
 			break;
-		print_after_cursor(cursor, prompt);
+		if (value == 2)
+			print_after_cursor(cursor, prompt);
 	}
 	if (chr == KEY_END)
 		return (NULL);

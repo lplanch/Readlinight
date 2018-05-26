@@ -17,6 +17,16 @@ readline_t *create_chr_cursor(char chr, readline_t *prev, readline_t *next)
 	return (new);
 }
 
+void rm_chr_cursor(readline_t **cursor)
+{
+	readline_t *temp_next = (*cursor)->next;
+
+	(*cursor) = (*cursor)->prev;
+	if (temp_next != NULL)
+		temp_next->prev = (*cursor);
+	(*cursor)->next = temp_next;
+}
+
 void add_chr_cursor(readline_t **cursor, char chr)
 {
 	readline_t *temp_next = (*cursor)->next;

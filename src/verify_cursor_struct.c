@@ -17,6 +17,14 @@ void print_all_cursor(readline_t *cursor)
 	}
 }
 
+int is_printable_char(int chr)
+{
+	if (chr != KEY_NULL && chr != KEY_END && chr != KEY_BACK &&
+		chr != KEY_TAB && chr != KEY_UP && chr != KEY_DOWN)
+		return (1);
+	return (0);
+}
+
 void print_after_cursor(readline_t *cursor, char *prompt)
 {
 	write(0, "\033[s\033[K\r", strlen("\033[s\033[K\r"));

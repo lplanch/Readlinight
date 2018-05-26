@@ -25,6 +25,7 @@
 #define KEY_BACK	127
 #define KEY_ESCAPE	0x001b
 #define KEY_ENTER	'\n'
+#define KEY_TAB		'\t'
 #define KEY_UP		0x0105
 #define KEY_DOWN	0x0106
 #define KEY_LEFT	0x0108
@@ -44,6 +45,7 @@ int get_key(void);
 //verify movable cursor
 int can_c_backward(readline_t *cursor);
 int can_c_forward(readline_t *cursor);
+int is_printable_char(int chr);
 
 //struct actions
 readline_t *create_chr_cursor(char chr, readline_t *prev, readline_t *next);
