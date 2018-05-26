@@ -55,10 +55,10 @@ int kbesc(void)
 			c = KEY_DOWN;
 			break;
 		case 'C':
-			c = KEY_LEFT;
+			c = KEY_RIGHT;
 			break;
 		case 'D':
-			c = KEY_RIGHT;
+			c = KEY_LEFT;
 			break;
 		default:
 			c = 0;

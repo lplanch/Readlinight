@@ -17,23 +17,39 @@
 #ifndef READLINE_H
 #	define READLINE_H
 
-#define C_FORWARD write(1, "\033[1D", 5)
-#define C_BACKWARD write(1, "\033[1C", 5)
+#define C_FORWARD write(0, "\033[1C", 5)
+#define C_BACKWARD write(0, "\033[1D", 5)
 
-#define KEY_ESCAPE	27
-#define KEY_ENTER	10
+#define KEY_NULL	'\0'
+#define KEY_END		4
+#define KEY_BACK	127
+#define KEY_ESCAPE	0x001b
+#define KEY_ENTER	'\n'
 #define KEY_UP		0x0105
 #define KEY_DOWN	0x0106
-#define KEY_LEFT	68
-#define KEY_RIGHT	67
+#define KEY_LEFT	0x0108
+#define KEY_RIGHT	0x0107
 
 typedef struct readline
 {
 	char chr;
 	struct readline *next;
+	struct readline *prev;
 } readline_t;
 
+//readline and get_key
 char *readline(char *prompt);
 int get_key(void);
+
+//verify movable cursor
+int can_c_backward(readline_t *cursor);
+int can_c_forward(readline_t *cursor);
+
+//struct actions
+readline_t *create_chr_cursor(char chr, readline_t *prev, readline_t *next);
+void add_chr_cursor(readline_t **cursor, char chr);
+void print_after_cursor(readline_t *cursor, char *prompt);
+
+void print_all_cursor(readline_t *cursor);
 
 #endif

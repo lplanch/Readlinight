@@ -14,6 +14,8 @@ SRCS_PREFIX	=	src/
 
 FILES		=	readline.c			\
 			get_key_readline.c		\
+			move_cursor_struct.c		\
+			verify_cursor_struct.c		\
 
 MAIN		=	$(addprefix $(SRCS_PREFIX), main.c)
 

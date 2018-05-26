@@ -13,7 +13,7 @@ int main(void)
 
 	while (1) {
 		test = readline("$> ");
-		printf("line : %s\n", test);
+		printf("\nline : %s\n", test);
 	}
 	return (0);
 }

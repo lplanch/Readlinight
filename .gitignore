@@ -1,0 +1,4 @@
+vg*
+*.o
+readline
+errors_build.txt
