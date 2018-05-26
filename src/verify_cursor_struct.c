@@ -7,20 +7,10 @@
 
 #include "readline.h"
 
-void print_all_cursor(readline_t *cursor)
-{
-	while (cursor->prev != NULL)
-		cursor = cursor->prev;
-	while (cursor->next != NULL) {
-		printf("[%c], ", cursor->next->chr);
-		cursor = cursor->next;
-	}
-}
-
 int is_printable_char(int chr)
 {
-	if (chr != KEY_NULL && chr != KEY_END && chr != KEY_BACK &&
-		chr != KEY_TAB && chr != KEY_UP && chr != KEY_DOWN)
+	if (chr != KEY_NULL && chr != KEY_END && chr != KEY_TAB &&
+		chr != KEY_UP && chr != KEY_DOWN && chr != KEY_ENTER)
 		return (1);
 	return (0);
 }

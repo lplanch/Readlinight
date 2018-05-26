@@ -40,6 +40,30 @@ int kbhit(void)
 	return (c != -1 ? 1 : 0);
 }
 
+int get_ch_keys(void)
+{
+	int c;
+
+	switch (getch()) {
+	case 'A':
+		c = KEY_UP;
+		break;
+	case 'B':
+		c = KEY_DOWN;
+		break;
+	case 'C':
+		c = KEY_RIGHT;
+		break;
+	case 'D':
+		c = KEY_LEFT;
+		break;
+	default:
+		c = 0;
+		break;
+	}
+	return (c);
+}
+
 int kbesc(void)
 {
 	int c;
@@ -47,27 +71,13 @@ int kbesc(void)
 	if (!kbhit()) return KEY_ESCAPE;
 	c = getch();
 	if (c == '[') {
-		switch (getch()) {
-		case 'A':
-			c = KEY_UP;
-			break;
-		case 'B':
-			c = KEY_DOWN;
-			break;
-		case 'C':
-			c = KEY_RIGHT;
-			break;
-		case 'D':
-			c = KEY_LEFT;
-			break;
-		default:
-			c = 0;
-			break;
-		}
+		c = get_ch_keys();
 	} else {
 		c = 0;
 	}
-	if (c == 0) while (kbhit()) getch();
+	if (c == 0)
+		while (kbhit())
+			getch();
 	return (c);
 }
 

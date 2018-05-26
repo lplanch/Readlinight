@@ -50,8 +50,8 @@ int is_printable_char(int chr);
 //struct actions
 readline_t *create_chr_cursor(char chr, readline_t *prev, readline_t *next);
 void add_chr_cursor(readline_t **cursor, char chr);
+void rm_chr_cursor(readline_t **cursor);
 void print_after_cursor(readline_t *cursor, char *prompt);
-
-void print_all_cursor(readline_t *cursor);
+char *readline_to_char(readline_t *cursor);
 
 #endif

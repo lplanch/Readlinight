@@ -12,7 +12,9 @@ int verify_actions_key(int chr, readline_t **cursor)
 	if (!is_printable_char(chr))
 		return (1);
 	if (chr == KEY_BACK && can_c_backward(*cursor)) {
-		//BACKSPACE
+		rm_chr_cursor(cursor);
+		write(0, "\b ", 2);
+		C_BACKWARD;
 		return (1);
 	}
 	return (0);
@@ -46,8 +48,8 @@ char *readline(char *prompt)
 	int value;
 
 	write(1, prompt, strlen(prompt));
-        while (1) {
-        	chr = get_key();
+	while (1) {
+		chr = get_key();
 		value = verify_key(chr, &cursor);
 		if (value == 0)
 			break;
@@ -56,5 +58,5 @@ char *readline(char *prompt)
 	}
 	if (chr == KEY_END)
 		return (NULL);
-        return ("ok");
+	return (readline_to_char(cursor));
 }
