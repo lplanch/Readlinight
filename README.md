@@ -1,4 +1,4 @@
-# PSU_readline_2017
+# Readlinight
 Readline done in one night for the 42sh.<br>
 
 # Installation
